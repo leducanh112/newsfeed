@@ -1,0 +1,19 @@
+my_sql: &MYSQL
+  dsn: "root:123456@tcp(localhost:3306)/engineerpro?charset=utf8mb4&parseTime=True&loc=Local"
+  defaultstringsize: 256
+  disabledatetimeprecision: true
+  dontsupportrenameindex: true
+  skipinitializewithversion: false
+
+redis: &REDIS
+  addr: localhost:6379
+
+authenticate_and_post_config:
+  port: 19001
+  my_sql: *MYSQL
+  redis: *REDIS
+
+web_config:
+  port: 19003
+  authenticate_and_post:
+    hosts: ["localhost:19001"]
